@@ -3,11 +3,11 @@ const scoresEL = document.querySelectorAll(".team-score");
 const newGameEL = document.querySelector("#btn-new-game");
 const scoreMap = new Map();
 setScore("home", 0);
-setScore("guest", 0);
+setScore("away", 0);
 
 function showScore() {
   scoresEL[0].textContent = scoreMap.get("home");
-  scoresEL[1].textContent = scoreMap.get("guest");
+  scoresEL[1].textContent = scoreMap.get("away");
 }
 
 function setScore(team = "home", score = 0) {
@@ -41,7 +41,7 @@ function getPoints(textContent) {
 function getTeam(element) {
   const teamEL = element.parentElement.parentElement.querySelector("h3");
   const team = teamEL.textContent.toLowerCase();
-  const teams = ["home", "guest"];
+  const teams = ["home", "away"];
   if (!teams.includes(team)) {
     throw new Error("Invalid team");
   }
@@ -64,6 +64,6 @@ newGameEL.addEventListener("click", (event) => {
   const confirmed = confirm("Both score will reset to zero. Are you sure?");
   if (confirmed) {
     setScore("home", 0);
-    setScore("guest", 0);
+    setScore("away", 0);
   }
 });
